@@ -10,21 +10,20 @@ class Solution
     public:
     bool isFrequencyUnique(int n, int arr[])
     {
-        map<int,int>mp;
-        for(int i=0;i<n;i++){
-            mp[arr[i]]++;
+        vector<int>ans;
+        unordered_map<int,int>ump;
+        for(int i=0;i<n;i++) {
+            ump[arr[i]]++;
         }
-        unordered_set<int>st;
-        for(auto it:mp){
-            int x = it.second;
-            if(st.count(x)>0) return false;
-            st.insert(x);
-            
+        for(auto x: ump) {
+            ans.push_back(x.second);
+        }
+        sort(ans.begin(),ans.end());
+        for(int i=1;i<ans.size();i++) {
+            if(ans[i]==ans[i-1]) return false;
         }
         return true;
     }
-
-
 };
 
 //{ Driver Code Starts.
