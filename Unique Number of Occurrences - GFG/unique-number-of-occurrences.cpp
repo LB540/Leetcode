@@ -10,18 +10,19 @@ class Solution
     public:
     bool isFrequencyUnique(int n, int arr[])
     {
-        vector<int>ans;
+        unordered_set<int>ans;
         unordered_map<int,int>ump;
         for(int i=0;i<n;i++) {
             ump[arr[i]]++;
         }
         for(auto x: ump) {
-            ans.push_back(x.second);
+            if(ans.count(x.second)>0) return false;
+            ans.insert(x.second);
         }
-        sort(ans.begin(),ans.end());
-        for(int i=1;i<ans.size();i++) {
-            if(ans[i]==ans[i-1]) return false;
-        }
+        // sort(ans.begin(),ans.end());
+        // for(int i=1;i<ans.size();i++) {
+        //     if(ans[i]==ans[i-1]) return false;
+        // }
         return true;
     }
 };
