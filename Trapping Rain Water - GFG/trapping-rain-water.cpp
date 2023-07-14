@@ -42,7 +42,7 @@ class Solution{
             suffix[i] = max(suffix[i+1],arr[i]);
         }
         long long res =0;
-        for(int i=1;i<n;i++) {
+        for(int i=1;i<n-1;i++) {
             res+=min(suffix[i],prefix[i])-arr[i];
         }
     
