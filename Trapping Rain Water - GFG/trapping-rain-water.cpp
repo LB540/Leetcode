@@ -29,23 +29,40 @@ class Solution{
         // }
         // return res;
         
-        // 2. Better Approach
-        int prefix[n];
-        prefix[0] = arr[0];
-        for(int i=1;i<n;i++) {
-            prefix[i] = max(prefix[i-1],arr[i]);
-        }
+        // 2. Better Approach O(n)time + O(n)space
+        // int prefix[n];
+        // prefix[0] = arr[0];
+        // for(int i=1;i<n;i++) {
+        //     prefix[i] = max(prefix[i-1],arr[i]);
+        // }
         
-        int suffix[n];
-        suffix[n-1] = arr[n-1];
-        for(int i=n-2;i>=0;i--) {
-            suffix[i] = max(suffix[i+1],arr[i]);
-        }
-        long long res =0;
-        for(int i=1;i<n-1;i++) {
-            res+=min(suffix[i],prefix[i])-arr[i];
-        }
+        // int suffix[n];
+        // suffix[n-1] = arr[n-1];
+        // for(int i=n-2;i>=0;i--) {
+        //     suffix[i] = max(suffix[i+1],arr[i]);
+        // }
+        // long long res =0;
+        // for(int i=1;i<n-1;i++) {
+        //     res+=min(suffix[i],prefix[i])-arr[i];
+        // }
     
+        // return res;
+        
+        // 3. Optimal Approach O(n) time + O(1) space
+        int leftmax=0,rightmax=0;
+        int l=0,r=n-1;
+        long long res = 0;
+        while(l<=r) {
+            if(arr[l]<=arr[r]) {
+                if(arr[l]>leftmax) leftmax = arr[l];
+                else res+= leftmax-arr[l];
+                l++;
+            } else {
+                if(arr[r]>rightmax) rightmax = arr[r];
+                else res+=rightmax-arr[r];
+                r--;
+            }
+        }
         return res;
     }
 };
