@@ -15,7 +15,7 @@ class Solution{
         if(sum>x) return 1;
         int cnt=INT_MAX;
         sum+=arr[j];
-        while(i<n && j<n) {
+        while(j<n) {
             if(x<sum) { 
                 cnt = min(cnt,j-i+1);
                 sum-=arr[i];
