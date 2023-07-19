@@ -10,9 +10,9 @@
  */
 class Solution {
 public:
-    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-        ListNode* ptr1 = list1;
-        ListNode* ptr2 = list2;
+    ListNode* mergeTwoLists(ListNode* ptr1, ListNode* ptr2) {
+        // ListNode* ptr1 = list1;
+        // ListNode* ptr2 = list2;
         ListNode* temp = new ListNode();
         ListNode* tail = temp;
         
