@@ -12,12 +12,12 @@ class Solution {
 public:
     
     void reverse(ListNode* s,ListNode* e) {
-        ListNode* prev=NULL,*curr=s,*temp=s->next;
+        ListNode* prev=NULL,*curr=s,*temp;
         while(prev!=e) {
+            temp=curr->next;
             curr->next=prev;
             prev=curr;
             curr=temp;
-            if(temp!=NULL) temp=temp->next;
         }
     }
     
