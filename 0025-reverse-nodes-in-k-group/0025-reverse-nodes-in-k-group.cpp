@@ -17,10 +17,10 @@ public:
         while(curr!=NULL) {
             ListNode* n = prev;
             ListNode* nn = curr;
-            ListNode* fake=curr;
+            ListNode* safe=curr;
             for(int i=0;i<k;i++) {
-                if(fake==NULL) return head;
-                fake=fake->next;
+                if(safe==NULL) return head;
+                safe=safe->next;
             }
             for(int i=0;curr!=NULL && i<k;i++) {
                 ListNode* temp =curr->next;
@@ -35,8 +35,6 @@ public:
                 head = prev;
             }
             prev = nn;
-            // curr = curr->next;
-            // prev= prev->next;
         }
         return head;
     }
