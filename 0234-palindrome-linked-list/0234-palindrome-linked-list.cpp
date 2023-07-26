@@ -13,7 +13,7 @@ public:
     bool isPalindrome(ListNode* head) {
         ListNode* mid = getMid(head);
         ListNode* nh = reverse(mid);
-        ListNode* hh = nh;
+        // ListNode* hh = nh;
         while(head!=NULL && nh!=NULL) {
             if(head->val != nh->val) {
                 break;
@@ -21,7 +21,7 @@ public:
             head=head->next;
             nh = nh->next;
         }
-        reverse(hh);
+        // reverse(hh);
         return head==NULL || nh==NULL;
     }
     
