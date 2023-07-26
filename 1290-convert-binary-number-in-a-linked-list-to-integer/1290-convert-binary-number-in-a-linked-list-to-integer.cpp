@@ -28,10 +28,13 @@ public:
         //         res+=pow(2,i);
         //     }
         // }
+        int j=1;
         for(int i=n-1;i>=0;i--) {
             if(binary[i]=='1') {
-                res+= pow(2,n-i-1);
+                // res+= pow(2,n-i+1);
+                res+=j;
             }
+            j<<=1;
         }
         return res;
     }
