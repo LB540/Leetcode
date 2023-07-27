@@ -3,40 +3,32 @@ public:
     
     typedef long long ll;
     
-    bool possible(vector<int>& batteries,ll mid,int n) {
-        ll target_minutes = (ll)n*mid;
+    bool possible(vector<int>& batteries,ll mid, int n) {
+        ll req_min = n*mid;
         
-        // ll sum = 0;
         for(int i=0;i<batteries.size();i++) {
-            target_minutes -= min((ll)batteries[i],mid);
-            
-            if(target_minutes<=0) {
-                return true;
-            }
+            req_min-=min((ll)batteries[i],mid);
+            if(req_min<=0) return true;
         }
         return false;
     }
     
     long long maxRunTime(int n, vector<int>& batteries) {
-        ll l = LLONG_MAX;
+        ll low = LLONG_MAX;
         ll total = 0;
-        
-        
         for(int i=0;i<batteries.size();i++) {
-            l = min(l,(ll)batteries[i]);
-            total += batteries[i];
+            low = min((ll)batteries[i],low);
+            total+=batteries[i];
         }
-        
-        
-        ll r = total/n;
-        ll result= 0;
-        while(l<=r) {
-            ll mid = l + (r-l)/2;
+        ll right = total/n;
+        ll result =0;
+        while(low<=right) {
+            ll mid = low + (right-low)/2;
             if(possible(batteries,mid,n)) {
                 result = mid;
-                l = mid+1;
+                low = mid+1;
             }else {
-                r = mid-1;
+                right = mid-1;
             }
         }
         return result;
