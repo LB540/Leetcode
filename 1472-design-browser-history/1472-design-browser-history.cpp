@@ -1,34 +1,26 @@
 class BrowserHistory {
 public:
-    list<string>hist;
-    list<string> :: iterator it;
-
+    vector<string> urls;
+    int curr;
     BrowserHistory(string homepage) {
-        hist.push_back(homepage);
-        it = hist.begin();
+        urls.push_back(homepage);
+        curr=0;
     }
     
     void visit(string url) {
-        auto del = it;
-        del++;
-        // hist.erase(it+1,it.end());
-        hist.erase(del,hist.end());
-        hist.push_back(url);
-        it++;
+        urls.erase(urls.begin()+curr+1,urls.end());
+        urls.push_back(url);
+        curr++;
     }
     
     string back(int steps) {
-        while((it!=hist.begin() && steps--)) {
-            it--;
-        }
-        return *it;
+        curr = max(0,curr-steps);
+        return urls[curr];
     }
     
     string forward(int steps) {
-        while((it!=(--hist.end()) && steps--)) {
-            it++;
-        }
-        return *it;
+        curr = min((int)urls.size()-1,steps+curr);
+        return urls[curr];
     }
 };
 
