@@ -19,7 +19,7 @@ public:
     }
     
     string forward(int steps) {
-        curr = min((int)urls.size()-1,steps+curr);
+        curr = min(steps+curr,(int)urls.size()-1);
         return urls[curr];
     }
 };
