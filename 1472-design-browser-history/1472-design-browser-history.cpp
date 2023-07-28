@@ -3,11 +3,7 @@ class Node {
         string val;
         Node* next;
         Node* prev;
-        Node() {
-            val = "";
-            next = NULL;
-            prev = NULL;
-        }
+    
         Node(string val) {
             this->val = val;
             next = NULL;
@@ -17,12 +13,10 @@ class Node {
 
 class BrowserHistory {
 public:
-    Node* curr = new Node();
+    // Node* curr = new Node("");
+    Node* curr;
     BrowserHistory(string homepage) {
-        Node* dummy = new Node(homepage);
-        curr->next = dummy;
-        dummy->prev = curr;
-        curr =dummy;
+        curr = new Node(homepage);
     }
     
     void visit(string url) {
@@ -33,7 +27,7 @@ public:
     }
     
     string back(int steps) {
-        while(steps-- && curr->prev->val!="") {
+        while(steps-- && curr->prev!=NULL) {
             curr = curr->prev;
         }
         return curr->val;
