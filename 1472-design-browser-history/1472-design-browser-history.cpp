@@ -1,26 +1,49 @@
+class Node {
+    public:
+        string val;
+        Node* next;
+        Node* prev;
+        Node() {
+            val = "";
+            next = NULL;
+            prev = NULL;
+        }
+        Node(string val) {
+            this->val = val;
+            next = NULL;
+            prev = NULL;
+        }
+};
+
 class BrowserHistory {
 public:
-    vector<string> urls;
-    int curr;
+    Node* curr = new Node();
     BrowserHistory(string homepage) {
-        urls.push_back(homepage);
-        curr=0;
+        Node* dummy = new Node(homepage);
+        curr->next = dummy;
+        dummy->prev = curr;
+        curr =dummy;
     }
     
     void visit(string url) {
-        urls.erase(urls.begin()+curr+1,urls.end());
-        urls.push_back(url);
-        curr++;
+        Node* nn = new Node(url);
+        curr->next = nn;
+        nn->prev =curr;
+        curr =nn;
     }
     
     string back(int steps) {
-        curr = max(0,curr-steps);
-        return urls[curr];
+        while(steps-- && curr->prev->val!="") {
+            curr = curr->prev;
+        }
+        return curr->val;
     }
     
     string forward(int steps) {
-        curr = min(steps+curr,(int)urls.size()-1);
-        return urls[curr];
+        while(steps-- && curr->next!=NULL) {
+            curr=curr->next;
+        }
+        return curr->val;
     }
 };
 
