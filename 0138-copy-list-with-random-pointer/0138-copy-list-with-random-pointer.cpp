@@ -17,13 +17,14 @@ public:
 class Solution {
 public:
     void copyList(Node* head) {
-        Node* temp=head, *n=head->next;
+        Node* temp=head;
         while(temp!=NULL) {
+            Node* n = temp->next;
             Node* newNode = new Node(temp->val);
             temp->next = newNode;
             newNode->next = n;
             temp = n;
-            if(n!=NULL)n = n->next;
+            // if(n = n->next;
         }
     }
     
